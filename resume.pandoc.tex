@@ -1,0 +1,196 @@
+%% =========================================================================
+%% Pandoc ModernCV template, generates a pretty PDF resume from a YAML source.
+%% Any original contributions by me (Sam Juvonen 2016) are in the public domain.
+%% CREDITS
+%% - pandoc's default.latex template
+%% - moderncv template.tex
+%% - http://mrzool.cc/writing/typesetting-automation/
+%% - http://tex.stackexchange.com/questions/168537/how-to-insert-multiple-paragraphs-in-a-cventry
+%% =========================================================================
+
+\documentclass[10pt,a4paper,draft]{moderncv}
+% moderncv themes
+% style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
+% color options 'black', 'blue' (default), 'burgundy', 'green', 'grey', 'orange', 'purple' and 'red'
+\moderncvtheme[black]{banking}
+
+\renewcommand*{\sectionfont}{\fontsize{14}{16}\bfseries\upshape}
+
+\usepackage{fontspec}
+
+$if(linestretch)$
+\usepackage{setspace}
+\setstretch{$linestretch$}
+$endif$
+
+$if(mainfont)$
+\setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
+$else$
+\setmainfont{Helvetica Neue}
+$endif$
+
+$if(sansfont)$
+    \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
+$endif$
+
+$if(monofont)$
+    \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$ ,$endfor$$endif$]{$monofont$}
+$endif$
+
+$if(mathfont)$
+    \setmathfont(Digits,Latin,Greek)[$for(mathfontoptions)$$mathfontoptions$$sep$,$endfor$]{$mathfont$}
+$endif$
+
+
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+$if(geometry)$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$endif$
+
+$if(links-as-notes)$
+% Make links footnotes instead of hotlinks:
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+% adjust the page margins
+\usepackage[scale=0.9]{geometry}
+\recomputelengths
+% if you want to change the width of the column with the dates
+\setlength{\hintscolumnwidth}{3cm}
+% for the 'classic' style, if you want to force the width allocated to your
+% name and avoid line breaks. be careful though, the length is normally
+% calculated to avoid any overlap with your personal info;
+% use this at your own typographical risks...
+%\setlength{\makecvtitlenamewidth}{10cm}          
+
+
+%% Redefine cventry and cvitem to allow multiple paragraphs.
+\usepackage{enumitem}
+
+\renewcommand{\cventry}[7][.25em]{%
+  \cvitem[#1]{#2}{%
+    {\bfseries#3}%
+    \ifthenelse{\equal{#4}{}}{}{, {\slshape#4}}%
+    \ifthenelse{\equal{#5}{}}{}{, #5}%
+    \ifthenelse{\equal{#6}{}}{}{, #6}%
+    .\strut%
+    \newline{\small\strut #7 \par}}}
+
+\renewcommand{\cvitem}[3][.25em]{%
+  \begin{mycvlist}
+    \item[#2] #3
+    \end{mycvlist}
+    \addvspace{#1}}
+
+\newlist{mycvlist}{description}{1}
+\setlist[mycvlist]{labelwidth=\hintscolumnwidth,labelsep=\separatorcolumnwidth,leftmargin=!,align=right,font=\normalfont}
+
+%% ========================================================================
+%% personal data
+%% ========================================================================
+\name{$firstname$}{$lastname$}
+
+$if(title)$
+\title{$title$}
+$endif$
+
+% optional, remove / comment the line if not wanted; 
+% the "postcode city" and "country" arguments can be omitted or provided empty
+$if(address)$
+\address{$if(address.street)$$address.street$$endif$}{$address.city$}{$address.country$}
+$endif$
+
+% these are optional and can be commented out
+$if(phone)$
+\phone[mobile]{$phone$}
+$endif$
+$if(email)$
+\email{$email$}
+$endif$
+$if(homepage)$
+\homepage{$homepage$} 
+$endif$
+$if(linkedin)$
+\social[linkedin]{$linkedin$}
+$endif$
+$if(twitter)$
+\social[twitter]{$twitter$} 
+$endif$
+$if(github)$
+\social[github]{$github$}
+$endif$
+%\extrainfo{additional information}
+
+
+%%----------------------------------------------------------------------------------
+%% Actual document content
+%%----------------------------------------------------------------------------------
+\begin{document}
+\makecvtitle
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(education)$
+\section{Education}
+$for(education)$
+\cventry{$education.dates$}{$education.title$}{$education.institution$}{$education.city$}{}{$for(education.description)$$education.description$$sep$ \medskip{}\newline{}$endfor$}
+$endfor$
+$endif$ % education
+
+$if(experience)$
+\section{Experience}
+
+$if(experience.industry)$
+\subsection{Industry}
+$for(experience.industry)$
+\cventry{$experience.industry.dates$}{$experience.industry.title$}{$experience.industry.employer$}{$experience.industry.city$}{}{$for(experience.industry.description)$$experience.industry.description$$sep$ \medskip{}\newline{}$endfor$}
+$endfor$
+$endif$ % industry
+
+$if(experience.academic)$
+\subsection{Academic}
+$for(experience.academic)$
+\cventry{$experience.academic.dates$}{$experience.academic.title$}{$experience.academic.employer$}{$experience.acamedic.city$}{}{$for(experience.academic.description)$$experience.academic.description$$sep$ \medskip{}\newline{}$endfor$}
+
+$endfor$
+$endif$ % academic
+$endif$ % experience
+
+$if(extracurricular)$
+\section{Extracurricular}
+$for(extracurricular)$
+\cventry{$extracurricular.dates$}{$extracurricular.title$}{$extracurricular.institution$}{$extracurricular.city$}{}{$for(extracurricular.description)$$extracurricular.description$$sep$ \medskip{}\newline{}$endfor$}
+$endfor$
+$endif$ % extracurricular
+
+$if(skills)$
+\section{Skills}
+
+$if(skills.language)$
+\textbf{Languages:}
+$skills.language$
+$endif$ % language
+
+$if(skills.cs)$
+\textbf{Computer Skills:}
+$skills.cs$
+$endif$ % cs
+
+$endif$ % skills
+
+$if(interests)$
+\section{Interests}
+$interests$
+$endif$ % interests
+
+\end{document}

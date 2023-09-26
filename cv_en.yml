@@ -1,0 +1,62 @@
+firstname: Marc
+lastname: Wenzlawski
+email: marcwenzlawski@gmail.com
+phone: +49 (0) 151 44955 081
+linkedin: marcwenzlawski
+github: wenzlawski
+homepage: wenzlawski.org
+
+education:
+  - dates: 09/2020 - 06/2023
+    institution: University of Manchester
+    city: Manchester, UK
+    title: B.Sc. (Hons) Artificial Intelligence
+    description:
+      - 
+      - 'Relevant Modules: Quantitative Statistics, Machine Learning, Data Science, Algorithms and Data Structures, Software Engineering'
+  - dates: 08/2018 - 12/2019
+    institution: Auckland Grammar School
+    city: Auckland, New Zealand
+    title: CIE A Level Certification
+    description:
+      - Mathematics, Physics, Geography, Economics
+
+experience:
+  industry:
+    - dates: 
+      employer: EWF Intertax GmbH
+      title: 
+      city: 
+      description:
+      tech: 
+  academic:
+    - dates: 09/2021 - 06/2023
+      employer: University of Manchester
+      title: Peer Mentor
+      city: Manchester, UK
+      description:
+        - Tutored freshmen in math and computer science concepts
+        - Assist students with programming exercises and reinforced concepts
+
+extracurricular:
+  - dates: 09/2022 - 08/2023
+    title: Communications Officer
+    institution: Data Science Society
+    city: Manchester, UK
+    description:
+      - Taught a class of 25 university students basic quantitative and algorithmic stock analysis in Python and Julia.
+      - Composed and directed on campus advertising campaign with a budget, raising club membership by 20%.
+  - dates: 09/2022 - 06/2023
+    title: Programme Associate
+    institution: AccelerateME Startup Accelerator
+    city: Manchester, UK
+    description:
+      - Organised workshops and speaker events as part of a 10 week programme hosting 12 startups and 30 people.
+      - Coordinated a team of five volunteers as part of workshops
+
+skills:
+  language: German (native), English (fluent), French (limited)
+  cs: Advanced user of PC, Mac, *nix, MS-Office, Adobe-suite, Docker, Git. Programming in Python, Julia, R, JavaScript, SQL, LaTeX, Bash. Web Design in HTML, CSS and SASS. Proficient in Python packages for Data Analysis and Machine Learning, JavaScript libraries React and Node.js.
+
+interests:
+  Rock climbing, debating, Model UN, sewing, non-fiction
